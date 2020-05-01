@@ -19,10 +19,8 @@ phases:
       - cat /tmp/aws_cred_export.txt
       - echo "Prepare terraform file"
       - echo "terraform { " >> provider-output-backend.tf
-      - echo "   backend \"s3\" { " >> provider-output-backend.tf
-      - echo "   bucket = \"$datapart.$region.terraform-state-software\"" >> provider-output-backend.tf
-      - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
-      - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
+      - echo "   backend \"local\" { " >> provider-output-backend.tf
+      - echo "   path = /tmp/terraform.tfstate " >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
       - cat provider-output-backend.tf
