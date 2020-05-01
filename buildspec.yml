@@ -26,9 +26,9 @@ phases:
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
       - cat provider-output-backend.tf
+      - source /tmp/aws_cred_export.txt && terraform init
   build:
     commands:
-      - . /tmp/aws_cred_export.txt && terraform init
       - terraform plan
       - terraform apply --auto-approve
   post_build:
