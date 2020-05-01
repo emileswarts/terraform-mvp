@@ -22,11 +22,10 @@ phases:
       - echo "   backend \"s3\" { " >> provider-output-backend.tf
       - echo "   bucket = \"$datapart.$region.terraform-state-software\"" >> provider-output-backend.tf
       - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
-      - echo "   region = \"$region\"" >> provider-output-backend.tf
+      - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
       - cat provider-output-backend.tf
-      - export AWS_REGION=eu-west-2
       - . /tmp/aws_cred_export.txt
       - terraform init
   build:
