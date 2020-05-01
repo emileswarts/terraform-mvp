@@ -20,7 +20,7 @@ phases:
       - echo "Prepare terraform file"
       - echo "terraform { " >> provider-output-backend.tf
       - echo "   backend \"local\" { " >> provider-output-backend.tf
-      - echo "   path = /tmp/terraform.tfstate " >> provider-output-backend.tf
+      - echo "   path = \"/tmp/terraform.tfstate\" " >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
       - cat provider-output-backend.tf
