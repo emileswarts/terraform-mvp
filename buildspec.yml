@@ -26,6 +26,7 @@ phases:
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
       - cat provider-output-backend.tf
+      - export AWS_REGION=eu-west-2
       - . /tmp/aws_cred_export.txt
       - terraform init
   build:
