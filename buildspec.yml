@@ -30,9 +30,9 @@ phases:
       - terraform init
   build:
     commands:
-      - terraform plan
-      - terraform apply --auto-approve
-  post_build:
-    commands:
-      - echo "Cleaning up"
-      - terraform destroy --auto-approve
+      - terraform plan -no-color
+      - terraform apply --auto-approve -no-color
+#  post_build:
+#    commands:
+#      - echo "Cleaning up"
+#      - terraform destroy --auto-approve
