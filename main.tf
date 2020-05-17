@@ -17,7 +17,6 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "poc" {
-  bucket = random_string.random.result
+  bucket = "pttp-showcase-${random_string.random.result}"
   acl    = "private"
 }
-
