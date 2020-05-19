@@ -32,6 +32,7 @@ phases:
     commands:
       - terraform plan -no-color
       - terraform apply --auto-approve -no-color
+      - echo "REST calls to Intune Graph APIs"
 #  post_build:
 #    commands:
 #      - echo "Cleaning up"
