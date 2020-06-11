@@ -24,7 +24,7 @@ phases:
       - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
       - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
       - echo "   assume_role {" >> provider-output-backend.tf
-      - echo "     role_arn = \"Resource\": \"arn:aws:iam::899987639597:role/cross-account-pttp\"" >> provider-output-backend.tf
+      - echo "     role_arn = \"arn:aws:iam::899987639597:role/cross-account-pttp\"" >> provider-output-backend.tf
       - echo "   }"
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
