@@ -23,11 +23,19 @@ phases:
       - echo "   bucket = \"pttp-client-tf-state\"" >> provider-output-backend.tf
       - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
       - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
-      - echo "   assume_role {" >> provider-output-backend.tf
-      - echo "     role_arn = \"arn:aws:iam::899987639597:role/cross-account-pttp\"" >> provider-output-backend.tf
-      - echo "   }" >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
+
+      - echo "" >> provider-output-backend.tf
+
+      - echo "provider \"aws\" {" >> provider-output-backend.tf
+      - echo "version = \"~> 2.0\"" >> provider-output-backend.tf
+      - echo "region  = \"eu-west-2\"" >> provider-output-backend.tf
+      - echo "assume_role {" >> provider-output-backend.tf
+      - echo "     role_arn = \"arn:aws:iam::899987639597:role/cross-account-pttp\"" >> provider-output-backend.tf
+      - echo "}" >> provider-output-backend.tf
+      - echo "}" >> provider-output-backend.tf
+
       - cat provider-output-backend.tf
       - . /tmp/aws_cred_export.txt
       - terraform init
