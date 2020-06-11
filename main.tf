@@ -4,6 +4,11 @@ terraform {
 
 provider "aws" {
   version = "~> 2.52"
+  region  = "eu-west-2"
+
+  assume_role {
+     role_arn = "arn:aws:iam::899987639597:role/cross-account-pttp"
+  }
 }
 
 provider "random" {
