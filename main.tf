@@ -8,6 +8,7 @@ provider "aws" {
 }
 
 provider "aws-production" {
+  alias = "production"
   version = "~> 2.52"
   region  = "eu-west-2"
 
@@ -19,6 +20,6 @@ provider "aws-production" {
 module "s3" {
   source    = "./modules/s3"
   providers = {
-    aws = "aws-production"
+    aws = "aws-production.production"
   }
 }
