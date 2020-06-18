@@ -21,7 +21,7 @@ phases:
       - echo "terraform { " >> provider-output-backend.tf
       - echo "   backend \"s3\" { " >> provider-output-backend.tf
       - echo "   bucket = \"pttp-client-codebuild-logging-development-tf-state\"" >> provider-output-backend.tf
-      - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
+      - echo "   key    = \"terraform.development.tfstate\"" >> provider-output-backend.tf
       - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
