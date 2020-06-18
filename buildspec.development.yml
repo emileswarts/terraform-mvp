@@ -27,6 +27,7 @@ phases:
       - echo "}" >> provider-output-backend.tf
 
       - echo "provider \"aws\" {" >> provider-output-backend.tf
+      - echo "  alias = \"env\"" >> provider-output-backend.tf
       - echo "  version = \"~> 2.52\"" >> provider-output-backend.tf
       - echo "  region  = \"eu-west-2\"" >> provider-output-backend.tf
       - echo "  assume_role {" >> provider-output-backend.tf
