@@ -1,0 +1,49 @@
+version: 0.2
+
+#env:
+#  variables:
+#    key: "value"
+#    key: "value"
+
+phases:
+  install:
+    commands:
+      - pip install boto3
+      - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+      - unzip terraform_0.12.24_linux_amd64.zip
+      - mv terraform /bin
+      - apt-get update
+      - apt-cache search source
+      - apt-get install -y curl jq
+      - curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI | jq 'to_entries | [ .[] | select(.key | (contains("Expiration") or contains("RoleArn"))  | not) ] |  map(if .key == "AccessKeyId" then . + {"key":"AWS_ACCESS_KEY_ID"} else . end) | map(if .key == "SecretAccessKey" then . + {"key":"AWS_SECRET_ACCESS_KEY"} else . end) | map(if .key == "Token" then . + {"key":"AWS_SESSION_TOKEN"} else . end) | map("export \(.key)=\(.value)") | .[]' -r > /tmp/aws_cred_export.txt # work around https://github.com/hashicorp/terraform/issues/8746
+      - cat /tmp/aws_cred_export.txt
+      - echo "Prepare terraform file"
+      - echo "terraform { " >> provider-output-backend.tf
+      - echo "   backend \"s3\" { " >> provider-output-backend.tf
+      - echo "   bucket = \"pttp-client-codebuild-logging-tf-state\"" >> provider-output-backend.tf
+      - echo "   key    = \"terraform.tfstate\"" >> provider-output-backend.tf
+      - echo "   region = \"eu-west-2\"" >> provider-output-backend.tf
+      - echo "  }" >> provider-output-backend.tf
+      - echo "}" >> provider-output-backend.tf
+
+      - echo "provider \"aws\" {" >> provider-output-backend.tf
+      - echo "  alias = \"production\" >> provider-output-backend.tf"
+      - echo "  version = \"~> 2.52\"" >> provider-output-backend.tf
+      - echo "  region  = \"eu-west-2\"" >> provider-output-backend.tf
+      - echo "  assume_role {" >> provider-output-backend.tf
+      - echo "    role_arn = \"arn:aws:iam::473630360727:role/SharedServicesCodeBuild\" >> provider-output-backend.tf"
+      - echo "  }" >> provider-output-backend.tf
+      - echo "}" >> provider-output-backend.tf
+
+      - cat provider-output-backend.tf
+      - . /tmp/aws_cred_export.txt
+      - terraform init
+  build:
+    commands:
+      - terraform init -no-color
+      - terraform plan -no-color
+      - terraform apply --auto-approve -no-color
+#  post_build:
+#    commands:
+#      - echo "Cleaning up"
+#      - terraform destroy --auto-approve
