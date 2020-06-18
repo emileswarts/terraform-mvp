@@ -13,10 +13,10 @@ terraform {
 //  region  = "eu-west-2"
 //
 //  assume_role {
-//    role_arn = "arn:aws:iam::068084030754:role/SharedServicesCodeBuild"
+//    role_arn = "arn:aws:iam::899987639597:role/cross-account-pttp"
 //  }
 //}
-//
+
 module "s3" {
   source    = "./modules/s3"
 }
