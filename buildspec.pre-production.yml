@@ -40,7 +40,6 @@ phases:
   build:
     commands:
       - terraform init -no-color --backend-config="bucket=pttp-client-codebuild-logging-pre-prod-tf-state"
-      - terraform plan -no-color
       - terraform apply --auto-approve -no-color
 #  post_build:
 #    commands:
