@@ -31,7 +31,7 @@ phases:
       - echo "  version = \"~> 2.52\"" >> provider-output-backend.tf
       - echo "  region  = \"eu-west-2\"" >> provider-output-backend.tf
       - echo "  assume_role {" >> provider-output-backend.tf
-      - echo "    role_arn = \"arn:aws:iam::473630360727:role/SharedServicesCodeBuild\"" >> provider-output-backend.tf
+      - echo "    role_arn = \"$PRE_PRODUCTION_ASSUME_ROLE_ARN\"" >> provider-output-backend.tf
       - echo "  }" >> provider-output-backend.tf
       - echo "}" >> provider-output-backend.tf
 
